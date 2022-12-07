@@ -1,18 +1,8 @@
-FILENAME REFFILE '/home/u62783591/sasuser.v94/diamonds.csv';
-
-PROC IMPORT DATAFILE=REFFILE
-	DBMS=CSV
-	OUT=WORK.DIAMONDS;
-	GETNAMES=YES;
-RUN;
-
-PROC CONTENTS DATA=DIAMONDS; RUN;
-
 %macro search(filter,x);
 	%put x= &x;
 	%put filter = &filter;
 	
-	%if &filter = VAR1 %then 
+	%if &filter = index %then 
 	 		%do;
 	 		data all_diamonds;
 	 			set diamonds;
@@ -20,7 +10,7 @@ PROC CONTENTS DATA=DIAMONDS; RUN;
 	 			run;
  			data result;
            		set diamonds;
-	    		where VAR1= "&x";
+	    		where index = "&x";
 	    		run;
 	 %end;
 	    			
@@ -28,7 +18,7 @@ PROC CONTENTS DATA=DIAMONDS; RUN;
 	run;
 %mend search;
 
-%search(VAR1,3);
+%search(index,3);
 
 
 proc print data=DIAMONDS (obs=10);
