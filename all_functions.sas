@@ -36,10 +36,10 @@ PROC CONTENTS DATA=WORK.DIAMONDS; RUN;
 %insert(index=53941 ,carat=0.3, cut="premium", color="N",clarity='X3',depth= 12.3,table= 43,price=294,x=1.23,y=5.21,z=34.1);
 	 			
 	 
-DATA new_details; 
+DATA diamonds; 
    SET diamonds new_diamond;
 run;
-PROC PRINT DATA = new_details; 
+PROC PRINT DATA = diamonds; 
 RUN;  
 quit;	
 
